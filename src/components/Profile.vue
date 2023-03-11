@@ -1,6 +1,7 @@
 <template>
-    <div class="container">
-        <div class="image"><img src="../assets/avi.jpg" alt="avi"></div>
+    <div class="container" >
+        <!-- v-for="profile in data" :key="profile.id" -->
+        <div class="image"><img src={profile.avatar_url} alt="avi"></div>
         <div class="profile-content">
             <h2>Aiyegbusi Oluwaferanmi</h2>
             <p>@Ferrari-coder</p>
@@ -18,14 +19,34 @@
                     <p class="profile-figures">22</p>
                     <h3 class="profile-details">Following</h3>
                 </div>
+                <!-- <div class="socials">
+                    <h3>Get In Touch:</h3>
+                    <div class="icons">
+                        <a href="mailto:oluwaferanmiaiyegbusi@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+                        <a href="https://twitter.com/ahm_tamilore" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="https://github.com/Ferrari-coder" target="_blank"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/oluwaferanmi-aiyegbusi-0952b4229/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div> -->
             </section>
         </div>
     </div>
 </template>
 
 <script>
+import axios from "axios"
 export default {
     name: 'ProfileSection',
+    data() {
+        return {
+            data: "",
+        };
+    },
+    mounted() {
+        axios.get("https://api.github.com/users/Ferrari-coder")
+            .then(response => response.data)
+            .then((data) => (this.data = data))
+    }
 }
 </script>
 
@@ -101,6 +122,8 @@ $background: #ffffff;
                 text-align: center;
                 line-height: $base-gap/3;
             }
+
+            .socials {}
         }
     }
 }

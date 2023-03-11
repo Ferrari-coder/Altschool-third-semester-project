@@ -5,72 +5,96 @@
       <div class="repo-container">
         <h2>Carousel-review</h2>
         <p class="desc">Carousel-review react js</p>
-        <p class="id">ID:87979997</p>
+        <div class="icon">
+          <p class="id">ID:87979997</p>
+          <i class="fa-solid fa-layer-group"></i>
+        </div>
         <div class="lang-size">
-          <p className="repo-lang">React js</p>
+          <p className="repo-lang"><i class="fa-regular fa-circle-dot"></i> React js</p>
           <p className="repo-size">140Kb</p>
         </div>
       </div>
       <div class="repo-container">
         <h2>Carousel-review</h2>
         <p class="desc">Carousel-review react js</p>
-        <p class="id">ID:87979997</p>
+        <div class="icon">
+          <p class="id">ID:87979997</p>
+          <i class="fa-solid fa-layer-group"></i>
+        </div>
         <div class="lang-size">
-          <p className="repo-lang">React js</p>
+          <p className="repo-lang"><i class="fa-regular fa-circle-dot"></i> React js</p>
           <p className="repo-size">140Kb</p>
         </div>
       </div>
       <div class="repo-container">
         <h2>Carousel-review</h2>
         <p class="desc">Carousel-review react js</p>
-        <p class="id">ID:87979997</p>
+        <div class="icon">
+          <p class="id">ID:87979997</p>
+          <i class="fa-solid fa-layer-group"></i>
+        </div>
         <div class="lang-size">
-          <p className="repo-lang">React js</p>
+          <p className="repo-lang"><i class="fa-regular fa-circle-dot"></i> React js</p>
           <p className="repo-size">140Kb</p>
         </div>
       </div>
       <div class="repo-container">
         <h2>Carousel-review</h2>
         <p class="desc">Carousel-review react js</p>
-        <p class="id">ID:87979997</p>
+        <div class="icon">
+          <p class="id">ID:87979997</p>
+          <i class="fa-solid fa-layer-group"></i>
+        </div>
         <div class="lang-size">
-          <p className="repo-lang">React js</p>
+          <p className="repo-lang"><i class="fa-regular fa-circle-dot"></i> React js</p>
           <p className="repo-size">140Kb</p>
         </div>
       </div>
       <div class="repo-container">
         <h2>Carousel-review</h2>
         <p class="desc">Carousel-review react js</p>
-        <p class="id">ID:87979997</p>
+        <div class="icon">
+          <p class="id">ID:87979997</p>
+          <i class="fa-solid fa-layer-group"></i>
+        </div>
         <div class="lang-size">
-          <p className="repo-lang">React js</p>
+          <p className="repo-lang"><i class="fa-regular fa-circle-dot"></i> React js</p>
           <p className="repo-size">140Kb</p>
         </div>
       </div>
       <div class="repo-container">
         <h2>Carousel-review</h2>
         <p class="desc">Carousel-review react js</p>
-        <p class="id">ID:87979997</p>
+        <div class="icon">
+          <p class="id">ID:87979997</p>
+          <i class="fa-solid fa-layer-group"></i>
+        </div>
         <div class="lang-size">
-          <p className="repo-lang">React js</p>
+          <p className="repo-lang"><i class="fa-regular fa-circle-dot"></i> React js</p>
           <p className="repo-size">140Kb</p>
         </div>
       </div>
       <div class="repo-container">
         <h2>Carousel-review</h2>
         <p class="desc">Carousel-review react js</p>
-        <p class="id">ID:87979997</p>
+        <div class="icon">
+          <p class="id">ID:87979997</p>
+          <i class="fa-solid fa-layer-group"></i>
+        </div>
         <div class="lang-size">
-          <p className="repo-lang">React js</p>
+          <p className="repo-lang"><i class="fa-regular fa-circle-dot"></i> React js</p>
           <p className="repo-size">140Kb</p>
         </div>
       </div>
       <div class="repo-container">
         <h2>Carousel-review</h2>
         <p class="desc">Carousel-review react js</p>
-        <p class="id">ID:87979997</p>
+        <div class="icon">
+          <p class="id">ID:87979997</p>
+          <i class="fa-solid fa-layer-group"></i>
+        </div>
         <div class="lang-size">
-          <p className="repo-lang">React js</p>
+          <p className="repo-lang"><i class="fa-regular fa-circle-dot"></i> React js</p>
           <p className="repo-size">140Kb</p>
         </div>
       </div>
@@ -85,7 +109,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 @use 'sass:math';
 
 /* variables*/
@@ -105,11 +128,52 @@ $background: #ffffff;
     color: $text-color;
   }
 
-  .repo{
+  .repo {
     padding: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+    display: grid;
+    gap: $base-gap;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+    .repo-container {
+      box-sizing: border-box;
+      background: #FFFFFF;
+      border: 1px solid rgba(77, 115, 248, 0.15);
+      border-radius: 6px;
+      padding: $base-gap/2 $base-gap;
+
+      h2 {
+        color: $primary;
+      }
+
+      .desc {
+        font-size: 16px;
+      }
+
+      .icon {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .fa-layer-group {
+          color: $primary;
+        }
+
+        .id {
+          color: #616161;
+
+        }
+      }
+
+
+      .lang-size {
+        display: flex;
+        justify-content: space-between;
+        font-size: 15px;
+
+        .fa-circle-dot {
+          color: $primary;
+        }
+      }
+    }
   }
-}
-</style>
+}</style>

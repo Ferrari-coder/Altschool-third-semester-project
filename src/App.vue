@@ -27,5 +27,6 @@ export default {
 }
 body{
   margin:50px;
+  background: #FAFAFA;
 }
 </style>
