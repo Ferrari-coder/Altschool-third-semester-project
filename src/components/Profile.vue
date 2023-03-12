@@ -1,22 +1,22 @@
 <template>
-    <div class="container" >
+    <div class="container">
         <!-- v-for="profile in data" :key="profile.id" -->
-        <div class="image"><img src={profile.avatar_url} alt="avi"></div>
+        <div class="image"><img src={{avatar}} alt="avi" /></div>
         <div class="profile-content">
-            <h2>Aiyegbusi Oluwaferanmi</h2>
-            <p>@Ferrari-coder</p>
+            <h2>{{data.name}}</h2>
+            <p>@{{data.login}}</p>
             <h5>Front-End Engineer</h5>
             <section class="section">
                 <div class="stat" id="repos">
-                    <p class="profile-figures" id="repo-fig">21</p>
+                    <p class="profile-figures" id="repo-fig">{{data.public_repos}}</p>
                     <h3 class="profile-details"> Repositories</h3>
                 </div>
                 <div class="stat">
-                    <p class="profile-figures">10</p>
+                    <p class="profile-figures">{{ data.followers }}</p>
                     <h3 class="profile-details"> Followers</h3>
                 </div>
                 <div class="stat">
-                    <p class="profile-figures">22</p>
+                    <p class="profile-figures">{{data.following}}</p>
                     <h3 class="profile-details">Following</h3>
                 </div>
                 <!-- <div class="socials">
@@ -40,12 +40,14 @@ export default {
     data() {
         return {
             data: "",
+            avatar: ""
         };
     },
     mounted() {
         axios.get("https://api.github.com/users/Ferrari-coder")
             .then(response => response.data)
-            .then((data) => (this.data = data))
+            .then((data) => {this.data = data; this.avatar = data.avatar_url; console.log([data, data.name, data.avatar_url])})
+            // console.log(data)
     }
 }
 </script>
@@ -123,7 +125,7 @@ $background: #ffffff;
                 line-height: $base-gap/3;
             }
 
-            .socials {}
+        //     .socials {}
         }
     }
 }

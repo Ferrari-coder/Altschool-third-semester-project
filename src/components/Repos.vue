@@ -1,112 +1,79 @@
 <template>
   <div class="container">
     <h1 className="repo-header">Repositories</h1>
-    <div class="repo">
-      <div class="repo-container">
-        <h2>Carousel-review</h2>
-        <p class="desc">Carousel-review react js</p>
-        <div class="icon">
-          <p class="id">ID:87979997</p>
-          <i class="fa-solid fa-layer-group"></i>
-        </div>
-        <div class="lang-size">
-          <p className="repo-lang"><i class="fa-regular fa-circle-dot"></i> React js</p>
-          <p className="repo-size">140Kb</p>
-        </div>
-      </div>
-      <div class="repo-container">
-        <h2>Carousel-review</h2>
-        <p class="desc">Carousel-review react js</p>
-        <div class="icon">
-          <p class="id">ID:87979997</p>
-          <i class="fa-solid fa-layer-group"></i>
-        </div>
-        <div class="lang-size">
-          <p className="repo-lang"><i class="fa-regular fa-circle-dot"></i> React js</p>
-          <p className="repo-size">140Kb</p>
-        </div>
-      </div>
-      <div class="repo-container">
-        <h2>Carousel-review</h2>
-        <p class="desc">Carousel-review react js</p>
-        <div class="icon">
-          <p class="id">ID:87979997</p>
-          <i class="fa-solid fa-layer-group"></i>
-        </div>
-        <div class="lang-size">
-          <p className="repo-lang"><i class="fa-regular fa-circle-dot"></i> React js</p>
-          <p className="repo-size">140Kb</p>
-        </div>
-      </div>
-      <div class="repo-container">
-        <h2>Carousel-review</h2>
-        <p class="desc">Carousel-review react js</p>
-        <div class="icon">
-          <p class="id">ID:87979997</p>
-          <i class="fa-solid fa-layer-group"></i>
-        </div>
-        <div class="lang-size">
-          <p className="repo-lang"><i class="fa-regular fa-circle-dot"></i> React js</p>
-          <p className="repo-size">140Kb</p>
-        </div>
-      </div>
-      <div class="repo-container">
-        <h2>Carousel-review</h2>
-        <p class="desc">Carousel-review react js</p>
-        <div class="icon">
-          <p class="id">ID:87979997</p>
-          <i class="fa-solid fa-layer-group"></i>
-        </div>
-        <div class="lang-size">
-          <p className="repo-lang"><i class="fa-regular fa-circle-dot"></i> React js</p>
-          <p className="repo-size">140Kb</p>
-        </div>
-      </div>
-      <div class="repo-container">
-        <h2>Carousel-review</h2>
-        <p class="desc">Carousel-review react js</p>
-        <div class="icon">
-          <p class="id">ID:87979997</p>
-          <i class="fa-solid fa-layer-group"></i>
-        </div>
-        <div class="lang-size">
-          <p className="repo-lang"><i class="fa-regular fa-circle-dot"></i> React js</p>
-          <p className="repo-size">140Kb</p>
-        </div>
-      </div>
-      <div class="repo-container">
-        <h2>Carousel-review</h2>
-        <p class="desc">Carousel-review react js</p>
-        <div class="icon">
-          <p class="id">ID:87979997</p>
-          <i class="fa-solid fa-layer-group"></i>
-        </div>
-        <div class="lang-size">
-          <p className="repo-lang"><i class="fa-regular fa-circle-dot"></i> React js</p>
-          <p className="repo-size">140Kb</p>
-        </div>
-      </div>
-      <div class="repo-container">
-        <h2>Carousel-review</h2>
-        <p class="desc">Carousel-review react js</p>
-        <div class="icon">
-          <p class="id">ID:87979997</p>
-          <i class="fa-solid fa-layer-group"></i>
-        </div>
-        <div class="lang-size">
-          <p className="repo-lang"><i class="fa-regular fa-circle-dot"></i> React js</p>
-          <p className="repo-size">140Kb</p>
-        </div>
-      </div>
+    <ul class="repo">
+      <li class="repo-container" v-for="repo in paginatedRepositories" :key="repo.id">
+        <router-link class="link" :to="{ name: 'SingleRepo', params: { id: repo.id } }">
+          <h2>{{ repo.name }}</h2>
+
+          <p class="desc">{{ repo.description }}</p>
+          <div class="icon">
+            <p class="id">ID:{{ repo.id }}</p>
+            <i class="fa-solid fa-layer-group"></i>
+          </div>
+          <div class="lang-size">
+            <p className="repo-lang"><i class="fa-regular fa-circle-dot"></i> {{ repo.language }}</p>
+            <p className="repo-size">{{ repo.size }}Kb</p>
+          </div>
+        </router-link>
+      </li>
+    </ul>
+    <div class="btn-container">
+      <button @click="currentPage--" :disabled="currentPage === 1" :class="{ disabled: currentPage === 1 }">
+        Prev
+      </button>
+      <span>Page {{ currentPage }} of {{ totalPages }}</span>
+      <button @click="currentPage++" :disabled="currentPage === totalPages"
+        :class="{ disabled: currentPage === totalPages }">
+        Next
+      </button>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
-  name: 'RepoSection',
-}
+  name: "RepoSection",
+
+  data() {
+    return {
+      repositories: [],
+      currentPage: 1,
+      perPage: 8,
+      totalPages: 0,
+    };
+  },
+  methods: {
+    async fetchRepositories() {
+      this.loading = true;
+      try {
+        const response = await axios.get(
+          "https://api.github.com/users/Ferrari-coder/repos"
+        );
+        console.log(response);
+        this.repositories = response.data;
+        this.totalPages = Math.ceil(this.repositories.length / this.perPage);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+  },
+  computed: {
+    paginatedRepositories() {
+      const startIndex = (this.currentPage - 1) * this.perPage;
+      const endIndex = startIndex + this.perPage;
+      return this.repositories.slice(startIndex, endIndex);
+    },
+  },
+  mounted() {
+    this.fetchRepositories();
+  },
+};
 </script>
+
+
 
 <style lang="scss" scoped>
 @use 'sass:math';
@@ -133,6 +100,12 @@ $background: #ffffff;
     display: grid;
     gap: $base-gap;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    list-style: none;
+
+    .link {
+      text-decoration: inherit;
+      color: inherit;
+    }
 
     .repo-container {
       box-sizing: border-box;
@@ -140,6 +113,14 @@ $background: #ffffff;
       border: 1px solid rgba(77, 115, 248, 0.15);
       border-radius: 6px;
       padding: $base-gap/2 $base-gap;
+      height: 280px;
+
+      &:hover {
+        box-shadow: 14px 8px 15px -1px rgba(0, 0, 0, 0.39);
+        -webkit-box-shadow: 14px 8px 15px -1px rgba(0, 0, 0, 0.2);
+        -moz-box-shadow: 14px 8px 15px -1px rgba(0, 0, 0, 0.2);
+        transition: all ease-out 0.7s;
+      }
 
       h2 {
         color: $primary;
@@ -176,4 +157,28 @@ $background: #ffffff;
       }
     }
   }
-}</style>
+
+  .btn-container {
+    text-align: center;
+
+    button {
+      margin: $base-gap/3;
+      background: $primary;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 20px;
+      color: $background;
+
+      &:hover {
+        background: rgba(77, 115, 248, 0.5);
+        color: $text-color;
+      }
+    }
+
+    span {
+      color: #616161;
+      font-size: 15px;
+    }
+  }
+}
+</style>
