@@ -55,6 +55,7 @@ $primary: #4D73F8;
 $base-gap: 30px;
 $text-color: #020C18;
 $background: #ffffff;
+$breakpoint-miniphone:500px;
 
 
 .repos-container {
@@ -109,6 +110,10 @@ $background: #ffffff;
                 font-size: 16px;
 
             }
+        @media(max-width : $breakpoint-miniphone){
+            justify-content: center;
+            gap: $base-gap/3;
+        }
         }
 
         .links{
