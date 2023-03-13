@@ -56,6 +56,7 @@ $base-gap: 30px;
 $text-color: #020C18;
 $background: #ffffff;
 
+
 .repos-container {
     display: flex;
     justify-content: center;
@@ -63,10 +64,13 @@ $background: #ffffff;
     margin: 30vh 0;
 
 
+
     .repos {
         background-color: $background ;
         padding: $base-gap*1.5 $base-gap;
         border-radius: 6px;
+        border: 1px solid rgba(77, 115, 248, 0.15);
+
 
         .btn {
             cursor: pointer;

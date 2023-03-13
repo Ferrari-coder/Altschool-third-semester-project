@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <!-- v-for="profile in data" :key="profile.id" -->
-        <div class="image"><img src={{avatar}} alt="avi" /></div>
+        <div class="image"><img src="https://avatars.githubusercontent.com/u/73191967?v=4" alt="avi" /></div>
         <div class="profile-content">
             <h2>{{data.name}}</h2>
             <p>@{{data.login}}</p>
@@ -40,13 +40,12 @@ export default {
     data() {
         return {
             data: "",
-            avatar: ""
         };
     },
     mounted() {
         axios.get("https://api.github.com/users/Ferrari-coder")
             .then(response => response.data)
-            .then((data) => {this.data = data; this.avatar = data.avatar_url; console.log([data, data.name, data.avatar_url])})
+            .then((data) => {this.data = data; })
             // console.log(data)
     }
 }
@@ -60,6 +59,11 @@ $primary: #4D73F8;
 $base-gap: 30px;
 $text-color: #020C18;
 $background: #ffffff;
+$breakpoint-minipc:1500px;
+$breakpoint-tablet:1350px;
+$breakpoint-minitab:800px;
+$breakpoint-phone:600px;
+$breakpoint-miniphone:500px;
 
 .container {
     display: flex;

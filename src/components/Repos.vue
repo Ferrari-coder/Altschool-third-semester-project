@@ -83,6 +83,11 @@ $primary: #4D73F8;
 $base-gap: 30px;
 $text-color: #020C18;
 $background: #ffffff;
+$breakpoint-minipc:1500px;
+$breakpoint-tablet:1350px;
+$breakpoint-minitab:800px;
+$breakpoint-phone:600px;
+$breakpoint-miniphone:500px;
 
 .container {
   margin: 30px 0;
@@ -113,7 +118,7 @@ $background: #ffffff;
       border: 1px solid rgba(77, 115, 248, 0.15);
       border-radius: 6px;
       padding: $base-gap/2 $base-gap;
-      height: 280px;
+      height: 330px;
 
       &:hover {
         box-shadow: 14px 8px 15px -1px rgba(0, 0, 0, 0.39);
@@ -141,7 +146,6 @@ $background: #ffffff;
 
         .id {
           color: #616161;
-
         }
       }
 
@@ -155,6 +159,15 @@ $background: #ffffff;
           color: $primary;
         }
       }
+    }
+    @media(max-width: $breakpoint-minipc){
+      grid-template-columns:1fr 1fr 1fr ;
+    }
+    @media(max-width: $breakpoint-tablet){
+      grid-template-columns:1fr 1fr ;
+    }
+    @media(max-width: $breakpoint-minitab){
+      grid-template-columns:1fr  ;
     }
   }
 
