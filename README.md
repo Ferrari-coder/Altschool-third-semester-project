@@ -7,6 +7,13 @@ This Application is my Altschoolafrica submission for 3rd semester
 
 ### Demo https://feranmi-gitrepo.vercel.app/
 
+## Dependencies
+This application uses the following dependencies:
+
+Vue.js\
+Vue Router\
+Axios
+
 
 ## Project setup
 ```
