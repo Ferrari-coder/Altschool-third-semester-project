@@ -5,6 +5,8 @@ This Application is my Altschoolafrica submission for 3rd semester
     - Another page showing data for a single repo clicked from the list of repos using nested routes
     - A wildcard route to catch 404 pages
 
+### Demo https://feranmi-gitrepo.vercel.app/
+
 
 ## Project setup
 ```
