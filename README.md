@@ -1,4 +1,19 @@
-# altchool-third-semester-exam
+# Feranmi's Github Repositories
+This Application is my Altschoolafrica submission for 3rd semester
+
+    - Show a page that fetches a list of all your repositories on GitHub
+    - Another page showing data for a single repo clicked from the list of repos using nested routes
+    - A wildcard route to catch 404 pages
+
+### Demo https://feranmi-gitrepo.vercel.app/
+
+## Dependencies
+This application uses the following dependencies:
+
+Vue.js\
+Vue Router\
+Axios
+
 
 ## Project setup
 ```
