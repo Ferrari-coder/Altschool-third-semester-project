@@ -28,4 +28,9 @@ body {
   margin: 50px;
   background: #FAFAFA;
 }
+@media(max-width:500px) {
+  body{
+    margin: 30px;
+  }
+}
 </style>

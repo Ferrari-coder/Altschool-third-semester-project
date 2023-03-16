@@ -1,14 +1,13 @@
 <template>
     <div class="container">
-        <!-- v-for="profile in data" :key="profile.id" -->
         <div class="image"><img src="https://avatars.githubusercontent.com/u/73191967?v=4" alt="avi" /></div>
         <div class="profile-content">
-            <h2>{{data.name}}</h2>
-            <p>@{{data.login}}</p>
+            <h2>{{ data.name }}</h2>
+            <p>@{{ data.login }}</p>
             <h5>Front-End Engineer</h5>
             <section class="section">
                 <div class="stat" id="repos">
-                    <p class="profile-figures" id="repo-fig">{{data.public_repos}}</p>
+                    <p class="profile-figures" id="repo-fig">{{ data.public_repos }}</p>
                     <h3 class="profile-details"> Repositories</h3>
                 </div>
                 <div class="stat">
@@ -16,18 +15,9 @@
                     <h3 class="profile-details"> Followers</h3>
                 </div>
                 <div class="stat">
-                    <p class="profile-figures">{{data.following}}</p>
+                    <p class="profile-figures">{{ data.following }}</p>
                     <h3 class="profile-details">Following</h3>
                 </div>
-                <!-- <div class="socials">
-                    <h3>Get In Touch:</h3>
-                    <div class="icons">
-                        <a href="mailto:oluwaferanmiaiyegbusi@gmail.com"><i class="fa-solid fa-envelope"></i></a>
-                        <a href="https://twitter.com/ahm_tamilore" target="_blank"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="https://github.com/Ferrari-coder" target="_blank"><i class="fa-brands fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/oluwaferanmi-aiyegbusi-0952b4229/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-                    </div>
-                </div> -->
             </section>
         </div>
     </div>
@@ -45,8 +35,8 @@ export default {
     mounted() {
         axios.get("https://api.github.com/users/Ferrari-coder")
             .then(response => response.data)
-            .then((data) => {this.data = data; })
-            // console.log(data)
+            .then((data) => { this.data = data; })
+        // console.log(data)
     }
 }
 </script>
@@ -59,11 +49,11 @@ $primary: #4D73F8;
 $base-gap: 30px;
 $text-color: #020C18;
 $background: #ffffff;
-$breakpoint-minipc:1500px;
-$breakpoint-tablet:1350px;
-$breakpoint-minitab:800px;
-$breakpoint-phone:600px;
-$breakpoint-miniphone:500px;
+$breakpoint-minipc: 1500px;
+$breakpoint-tablet: 1350px;
+$breakpoint-minitab: 990px;
+$breakpoint-phone: 767px;
+$breakpoint-miniphone: 500px;
 
 .container {
     display: flex;
@@ -88,10 +78,19 @@ $breakpoint-miniphone:500px;
             height: 100%;
             border-radius: 50%;
         }
+        @media(max-width: $breakpoint-miniphone){
+            width: 180px;
+            height: 180px;
+        }
     }
 
     .profile-content {
         line-height: 15px;
+
+        @media(max-width: $breakpoint-minitab){
+            line-height:normal;
+            text-align:center;
+        }
 
         h2 {
             font-family: 'Merriweather';
@@ -129,8 +128,16 @@ $breakpoint-miniphone:500px;
                 line-height: $base-gap/3;
             }
 
-        //     .socials {}
+            @media(max-width: $breakpoint-phone) {
+flex-direction: column;
+justify-content: center;
+align-items: center;            }
         }
+    }
+
+    @media(max-width: $breakpoint-minitab) {
+        flex-direction: column;
+        text-align: center;
     }
 }
 </style>
